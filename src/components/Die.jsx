@@ -1,10 +1,13 @@
 import React from "react"
 
 function Die(props) {
+
+    // Change the background color of the die if it is held
     const styles = {
         backgroundColor: props.isHeld ? "#59E391" : "white"
     };
 
+    // Render the die component
     return (
         <div 
             className="die-face" 
