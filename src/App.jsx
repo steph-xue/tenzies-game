@@ -1,19 +1,19 @@
 import React from "react"
-import Die from "./Die"
+import Die from "./components/Die.jsx"
 import {nanoid} from "nanoid"
 import Confetti from "react-confetti"
 
-export default function App() {
+function App() {
 
-    const [dice, setDice] = React.useState(allNewDice())
-    const [tenzies, setTenzies] = React.useState(false)
+    const [dice, setDice] = React.useState(allNewDice());
+    const [tenzies, setTenzies] = React.useState(false);
     
     React.useEffect(() => {
-        const allHeld = dice.every(die => die.isHeld)
-        const firstValue = dice[0].value
-        const allSameValue = dice.every(die => die.value === firstValue)
+        const allHeld = dice.every(die => die.isHeld);
+        const firstValue = dice[0].value;
+        const allSameValue = dice.every(die => die.value === firstValue);
         if (allHeld && allSameValue) {
-            setTenzies(true)
+            setTenzies(true);
         }
     }, [dice])
 
@@ -22,15 +22,15 @@ export default function App() {
             value: Math.ceil(Math.random() * 6),
             isHeld: false,
             id: nanoid()
-        }
+        };
     }
     
     function allNewDice() {
         const newDice = []
         for (let i = 0; i < 10; i++) {
-            newDice.push(generateNewDie())
+            newDice.push(generateNewDie());
         }
-        return newDice
+        return newDice;
     }
     
     function rollDice() {
@@ -38,11 +38,11 @@ export default function App() {
             setDice(oldDice => oldDice.map(die => {
                 return die.isHeld ? 
                     die :
-                    generateNewDie()
-            }))
+                    generateNewDie();
+            }));
         } else {
-            setTenzies(false)
-            setDice(allNewDice())
+            setTenzies(false);
+            setDice(allNewDice());
         }
     }
     
@@ -50,8 +50,8 @@ export default function App() {
         setDice(oldDice => oldDice.map(die => {
             return die.id === id ? 
                 {...die, isHeld: !die.isHeld} :
-                die
-        }))
+                die;
+        }));
     }
     
     const diceElements = dice.map(die => (
@@ -61,7 +61,7 @@ export default function App() {
             isHeld={die.isHeld} 
             holdDice={() => holdDice(die.id)}
         />
-    ))
+    ));
     
     return (
         <main>
@@ -79,5 +79,7 @@ export default function App() {
                 {tenzies ? "New Game" : "Roll"}
             </button>
         </main>
-    )
+    );
 }
+
+export default App;
