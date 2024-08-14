@@ -6,32 +6,27 @@ function Die(props) {
 
     // Change the background color of the die if it is held
     const styles = {
-        backgroundColor: props.isHeld ? "#d3b08d" : "white"
+        backgroundColor: props.isHeld ? "#d3b08d" : "white",
+        boxShadow: props.isHeld ? "inset 0 5px #d3b08d, inset 0 -5px #a88b6e, inset 5px 0 #c09f7 inset -5px 0 #c09f7f" : "inset 0 5px white, inset 0 -5px #bbb, inset 5px 0 #d7d7d7 inset -5px 0 #d7d7d7"
     };
 
-    // Define the Pip component
-    const Pip = () => <span className="pip" />;
+    // Generate pips (dots) for the die face based on the die's value
+    const pips = (
+        Array(dieValue)
+            .fill(0)
+            .map((pip, i) => <span key={i} className="pip" />)
+        );
 
-    // Define the Face component
-    const Face = ({ children }) => (
+    // Render the die component
+    return (
         <div 
             className="die-face"
             style={styles}
             onClick={props.holdDice}
         >
-            {children}
+            {pips}
         </div>
     );
-
-    // Generate the pips for the die face
-    const pips = Number.isInteger(dieValue)
-        ? Array(dieValue)
-            .fill(0)
-            .map((_, i) => <Pip key={i} />)
-        : null;
-
-    // Render the die component
-    return <Face>{pips}</Face>;
 }
 
 export default Die;
