@@ -13,26 +13,30 @@ body {
 
 main {
   background-color: #F5F5F5;
-  height: 550px;
+  min-height: 550px;
   width: 800px;
-  padding: 20px;
+  padding-block: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
   margin-top: 40px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   border-radius: 10px;
 }
 
 .title {
   font-size: 50px;
-  margin: 0;
+  margin-top: 0px;
+  margin-bottom: 10px;
 }
 
 .instructions {
   font-family: 'Inter', sans-serif;
   font-weight: 400;
-  margin-top: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   text-align: center;
 }
 
@@ -40,7 +44,7 @@ main {
   display: grid;
   grid-template: auto auto / repeat(5, 1fr);
   gap: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   margin-top: 10px;
 }
 
@@ -91,6 +95,11 @@ main {
 /* This selects the last pip of odd-valued dice (1, 3, 5) and positions the pip in the center */
 .pip:nth-child(odd):last-child {
 	grid-area: g;
+}
+
+.win {
+  font-size: 30px;
+  margin-bottom: 20px;
 }
 
 .roll-dice {
