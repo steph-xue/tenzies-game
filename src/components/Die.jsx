@@ -1,91 +1,37 @@
 import React from "react"
 
 function Die(props) {
+    // Extract the value of the die from the props
+    const dieValue = props.value;
 
     // Change the background color of the die if it is held
     const styles = {
         backgroundColor: props.isHeld ? "#d3b08d" : "white"
     };
 
-    // Render the die face based on the value
-    var dieFace;
-    if (props.value === 1) {
-        dieFace = (
-            <div className="first-face">
-                <span className="pip"></span>
-            </div>
-        );
-    } else if (props.value === 2) {
-        dieFace = (
-            <div className="second-face">
-                <span className="pip"></span>
-                <span className="pip"></span>
-            </div>
-        );
-    } else if (props.value === 3) {
-        dieFace = (
-            <div className="third-face">
-                <span className="pip"></span>
-                <span className="pip"></span>
-                <span className="pip"></span>
-            </div>
-        );
-    } else if (props.value === 4) {
-        dieFace = (
-            <div className="fourth-face">
-                <div className="column">
-                    <span className="pip"></span>
-                    <span className="pip"></span>
-                </div>
-                <div className="column">
-                    <span className="pip"></span>
-                    <span className="pip"></span>
-                </div>
-            </div>
-        );
-    } else if (props.value === 5) {
-        dieFace = (
-            <div className="fifth-face">
-                <div className="column">
-                    <span className="pip"></span>
-                    <span className="pip"></span>
-                </div>
-                <div className="column">
-                    <span className="pip"></span>
-                </div>
-                <div className="column">
-                    <span className="pip"></span>
-                    <span className="pip"></span>
-                </div>
-            </div>
-        );
-    } else {
-        dieFace = (
-            <div className="sixth-face">
-                <div className="column">
-                    <span className="pip"></span>
-                    <span className="pip"></span>
-                    <span className="pip"></span>
-                </div>
-                <div className="column">
-                    <span className="pip"></span>
-                    <span className="pip"></span>
-                    <span className="pip"></span>
-                </div>
-            </div>
-        );
-    }
+    // Define the Pip component
+    const Pip = () => <span className="pip" />;
 
-    // Render the die component
-    return (
+    // Define the Face component
+    const Face = ({ children }) => (
         <div 
-            className="die-face" 
+            className="die-face"
             style={styles}
             onClick={props.holdDice}
         >
-            {dieFace}
+            {children}
         </div>
     );
+
+    // Generate the pips for the die face
+    const pips = Number.isInteger(dieValue)
+        ? Array(dieValue)
+            .fill(0)
+            .map((_, i) => <Pip key={i} />)
+        : null;
+
+    // Render the die component
+    return <Face>{pips}</Face>;
 }
 
 export default Die;
