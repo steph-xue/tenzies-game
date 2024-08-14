@@ -4,7 +4,7 @@ function Die(props) {
 
     // Change the background color of the die if it is held
     const styles = {
-        backgroundColor: props.isHeld ? "#59E391" : "white"
+        backgroundColor: props.isHeld ? "#d3b08d" : "white"
     };
 
     // Render the die component
