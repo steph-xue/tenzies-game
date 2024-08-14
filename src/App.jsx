@@ -5,9 +5,14 @@ import Confetti from "react-confetti"
 
 function App() {
 
+    // Create a state variable to store the 10 dice objects (initially all randomly generated)
     const [dice, setDice] = React.useState(allNewDice());
+
+    // Create a state variable to store whether the player has achieved a tenzies win
     const [tenzies, setTenzies] = React.useState(false);
     
+    // Check if the player has achieved a tenzies win
+    // Checks if all dice are held and have the same value
     React.useEffect(() => {
         const allHeld = dice.every(die => die.isHeld);
         const firstValue = dice[0].value;
@@ -17,6 +22,7 @@ function App() {
         }
     }, [dice])
 
+    // Function to generate a new die object
     function generateNewDie() {
         return {
             value: Math.ceil(Math.random() * 6),
@@ -24,7 +30,8 @@ function App() {
             id: nanoid()
         };
     }
-    
+
+    // Function to generate an array of 10 new die objects
     function allNewDice() {
         const newDice = []
         for (let i = 0; i < 10; i++) {
@@ -33,6 +40,7 @@ function App() {
         return newDice;
     }
     
+    // Function to roll the dice or reset the game if won
     function rollDice() {
         if(!tenzies) {
             setDice(oldDice => oldDice.map(die => {
@@ -46,6 +54,7 @@ function App() {
         }
     }
     
+    // Function to hold a die
     function holdDice(id) {
         setDice(oldDice => oldDice.map(die => {
             return die.id === id ? 
@@ -54,6 +63,7 @@ function App() {
         }));
     }
     
+    // Map the dice objects to an array of dice components
     const diceElements = dice.map(die => (
         <Die 
             key={die.id} 
@@ -63,6 +73,7 @@ function App() {
         />
     ));
     
+    // Render the app
     return (
         <main>
             {tenzies && <Confetti />}
