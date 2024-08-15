@@ -55,7 +55,7 @@ main {
   margin-bottom: 0px;
 }
 
-.best-score {
+.scoreboard {
   font-size: 1.2rem;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -127,23 +127,23 @@ main {
 	grid-area: g;
 }
 
-.roll-number {
+.score {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  gap: 20px;
   font-size: 1.2rem;
-  margin-bottom: -15px;
-  padding-bottom: 0px;
-  margin-top: 10px;
-  text-align: center;
 }
 
 .current-time {
+  margin-left: 20px;
+};
+
+.end-timer {
   font-size: 1.2rem;
-  margin-bottom: 0px;
   margin-top: 0px;
-  padding-top: 0px;
+  margin-bottom: 20px;
   text-align: center;
-  display: flex;
-  justify-content: center;  
-  gap: 5px;
 }
 
 .win-container {
