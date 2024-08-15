@@ -22,24 +22,18 @@ function App() {
     const [time, setTime] = React.useState(0);
 
     // Create a state variable to store the score (time and number of rolls to finish game after achieving a tenzies win)
-    const [score, setScore] = React.useState({});
-    
-
-    if (localStorage.getItem("bestRolls") === "undefined") {
-      localStorage.removeItem("bestRolls");
-    }
-  
-    if (localStorage.getItem("bestTime") === "undefined") {
-      localStorage.removeItem("bestTime");
-    }
+    const [score, setScore] = React.useState({
+        scoreRolls: 0,
+        scoreTime: 0
+    });
 
     // Create a state variable to store the best rolls (lowest number of rolls to achieve a tenzies win)
     const [bestRolls, setBestRolls] = React.useState(
-      localStorage.getItem("bestRolls") !== null ? JSON.parse(localStorage.getItem("bestRolls")) : 0);
+      localStorage.getItem("bestRolls") !== (undefined || null) ? JSON.parse(localStorage.getItem("bestRolls")) : 0);
   
     // Create a state variable to store the best time(seconds) (fastest time to achieve a tenzies win)
     const [bestTime, setBestTime] = React.useState(
-      localStorage.getItem("bestTime") !== null ? JSON.parse(localStorage.getItem("bestTime")) : 0);
+      localStorage.getItem("bestTime") !== (undefined || null) ? JSON.parse(localStorage.getItem("bestTime")) : 0);
 
     // Check if the player has achieved a tenzies win (all dice are held and have the same value)
     // If win is achieved, set the tenzies state to true, stops the game, and saves the score
@@ -70,21 +64,26 @@ function App() {
     // Function to set the current game's score and update the best rolls and time in local storage
     function setRecords() {
 
-      const timeAdjusted = Math.floor(time / 10);
-
+      const currentRolls = rolls;
+      const currentTime = time / 1000;
+      const roundedTime = Math.round(currentTime * 100) / 100
+  
+      // Update the score state
       setScore({
-        scoreRolls: rolls,
-        scoreTime: timeAdjusted
+          scoreRolls: currentRolls,
+          scoreTime: roundedTime
       });
-
-      if (!bestRolls || score.scoreRolls < bestRolls) {
-        setBestRolls(score.scoreRolls);
-        localStorage.setItem("bestRolls", JSON.stringify(score.scoreRolls));
+  
+      // Update best rolls if currentRolls is lower or if bestRolls is 0 (initial value)
+      if (bestRolls === 0 || currentRolls < bestRolls) {
+          setBestRolls(currentRolls);
+          localStorage.setItem("bestRolls", JSON.stringify(currentRolls));
       }
-
-      if (!bestTime || score.scoreTime < bestTime) {
-        setBestTime(score.scoreTime);
-        localStorage.setItem("bestTime", JSON.stringify(score.scoreTime));
+  
+      // Update best time if currentTime is lower or if bestTime is 0 (initial value)
+      if (bestTime === 0 || roundedTime < bestTime) {
+          setBestTime(roundedTime);
+          localStorage.setItem("bestTime", JSON.stringify(roundedTime));
       }
     }
 
@@ -162,15 +161,18 @@ function App() {
             </div>
 
             {/* Scoreboard and dice */}
-            <div>
-                <Scoreboard 
-                    bestRolls={bestRolls} 
-                    bestTime={bestTime}
-                />
-                <div className="dice-container">
-                  {diceElements}
-                </div>
-            </div>   
+            {
+              ((start && !tenzies) || tenzies) &&
+                <div>
+                    <Scoreboard 
+                        bestRolls={bestRolls} 
+                        bestTime={bestTime}
+                    />
+                    <div className="dice-container">
+                      {diceElements}
+                    </div>
+                </div>   
+            }
 
             {/* Number of rolls & timer */}
             {
@@ -196,20 +198,12 @@ function App() {
             {/* Ending time and win message */}
             {
               tenzies &&
-              <div>
-                  <div className="end-timer">
-                      <p>
-                        Timer: {("0" + Math.floor((time / 1000) % 60)).slice(-2)}:
-                        {("0" + ((time / 10) % 1000)).slice(-2)} 
-                      </p>
-                  </div>
-                  <div className="win-container">
-                      <h2 className="win">You won!</h2>
-                      <h2 className="roll-win">
-                        It took you {(score.scoreTime/100)} seconds and {score.scoreRolls} rolls!
-                      </h2>
-                  </div>
-              </div>
+                <div className="win-container">
+                    <h2 className="win">You won!</h2>
+                    <h2 className="roll-win">
+                      It took you {(score.scoreTime)} seconds and {score.scoreRolls} rolls!
+                    </h2>
+                </div>
             }
 
             {/* Start game button */}
