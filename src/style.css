@@ -4,7 +4,7 @@
 
 body {
   margin: 0;
-  background-color: #ccb296;;
+  background-color: #ccb296;
   padding: 20px;
   font-family: 'Karla', sans-serif;
   display: flex;
@@ -24,9 +24,9 @@ main {
   justify-content: space-between;
   align-items: center;
   border-radius: 10px;
-}
+  box-shadow: #ab8865 0px 5px 15px 0px;
 
-.title {
+  .title {
   font-size: 3rem;
   margin-top: 0px;
   margin-bottom: 10px;
@@ -127,6 +127,11 @@ main {
   cursor: pointer;
   margin-top: 20px;
   margin-bottom: 20px;
+  box-shadow: 0 5px #b48b63, inset 0 -5px #916d49, inset 5px 0 #a97f56, inset -5px 0 #a97f56;
+}
+
+.roll-dice:hover {
+  background-color: #9f764c;
 }
 
 .roll-dice:focus {
