@@ -145,22 +145,28 @@ function App() {
             {
               gameStarted &&
               <div>
-                {bestScore !== null && <h2 className="best-score">Best Score: {bestScore.time} seconds with {bestScore.rolls} rolls</h2>}
-                <div className="dice-container">
-                  {diceElements}
-                </div>
-                <div className="roll-number">
-                  Number of rolls: {rolls}
-                </div>
-                <div className="current-time">
-                  Current time: {time/1000} seconds
-                </div>
+                  <div className="best-score">
+                    {bestScore !== null && <h2 className="best-score">Best Score: {bestScore.time} seconds with {bestScore.rolls} rolls</h2>}
+                  </div>
+                  <div className="dice-container">
+                    {diceElements}
+                  </div>
+                  <div className="roll-number">
+                    Number of rolls: {rolls}
+                  </div>
+                  <div className="current-time">
+                    Current time: {time/1000} seconds
+                  </div>
               </div>   
             }
 
             {tenzies && <h2 className="win">You won!</h2>}
-            {tenzies && <h2 className="roll-win">It took you {currentScore.time} seconds!</h2>}
-            {tenzies && <h2 className="roll-win">It took you {rolls} rolls!</h2>}
+            {
+              tenzies &&
+                <h2 className="roll-win">
+                  It took you {currentScore.time.toFixed(2)} seconds and {currentScore.rolls} rolls!
+                </h2>
+            }
 
             {
               !gameStarted && !tenzies &&
