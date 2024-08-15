@@ -1,5 +1,6 @@
 import React from "react"
 import Die from "./components/Die.jsx"
+import Scoreboard from "./components/Scoreboard.jsx"
 import {nanoid} from "nanoid"
 import Confetti from "react-confetti"
 
@@ -8,74 +9,82 @@ function App() {
     // Create a state variable to store the 10 dice objects (initially all randomly generated)
     const [dice, setDice] = React.useState(allNewDice());
 
-    // Create a state variable to store whether the player has started the game
-    const [gameStarted, setGameStarted] = React.useState(false);
+    // Create a state variable to store the number of rolls
+    const [rolls, setRolls] = React.useState(0);
 
     // Create a state variable to store whether the player has achieved a tenzies win
     const [tenzies, setTenzies] = React.useState(false);
 
-    // Create a state variable to store the number of rolls
-    const [rolls, setRolls] = React.useState(0);
+    // Create a state variable to store whether the player has started the game
+    const [start, setStart] = React.useState(false);
 
-    // Create a state variable to store the start time of the current game
-    const [startTime, setStartTime] = React.useState(0);
-
-    // Create a state variable to store the end time of the current game
-    const [endTime, setEndTime] = React.useState(0);
-
-    // Create a state variable to store the current time
+    // Create a state variable to store the current time (for the timer)
     const [time, setTime] = React.useState(0);
 
-    // Create a state variable to store the current score (time and number of rolls to finish game after achieving a tenzies win)
-    const [currentScore, setCurrentScore] = React.useState({});
+    // Create a state variable to store the score (time and number of rolls to finish game after achieving a tenzies win)
+    const [score, setScore] = React.useState({});
 
-    // Create a state variable to store the best score (fastest time and associated number of rolls)
-    const [bestScore, setbestScore] = React.useState(() => JSON.parse(localStorage.getItem("bestScore")) || null);
-
-    // Create a state variable to store the interval ID for the timer
-    const [intervalId, setIntervalId] = React.useState(null);
+    // Create a state variable to store the best rolls (lowest number of rolls to achieve a tenzies win)
+    const [bestRolls, setBestRolls] = React.useState(JSON.parse(localStorage.getItem("bestRolls")) || 0);
+  
+    // Create a state variable to store the best time(seconds) (fastest time to achieve a tenzies win)
+    const [bestTime, setBestTime] = React.useState(JSON.parse(localStorage.getItem("bestTime")) || 0);
     
-    // Check if the player has achieved a tenzies win
-    // Checks if all dice are held and have the same value
+    // Check if the player has achieved a tenzies win (all dice are held and have the same value)
+    // If win is achieved, set the tenzies state to true, stops the game, and saves the score
     React.useEffect(() => {
         const allHeld = dice.every(die => die.isHeld);
         const firstValue = dice[0].value;
         const allSameValue = dice.every(die => die.value === firstValue);
         if (allHeld && allSameValue) {
             setTenzies(true);
-            setEndTime((new Date().getTime())/1000);
-            clearInterval(intervalId);
+            setStartGame(false);
+            setRecords();
         }
     }, [dice])
 
-    // Check if the player has achieved a new best score (fastest time) to save to local storage
+    // Set timer to update the time every 10 milliseconds
     React.useEffect(() => {
-        if (tenzies) {
-            setCurrentScore({
-                rolls: rolls,
-                time: (endTime - startTime) / 1000
-            });
+      let interval = null;
+      if (start) {
+        interval = setInterval(() => {
+          setTime((prevTime) => prevTime + 10);
+        }, 10);
+      } else {
+        clearInterval(interval);
+      }
+      return () => clearInterval(interval);
+    }, [start]);
 
-            if (!bestScore || currentScore.time < bestScore.time) {
-              setBestScore(currentScore);
-              localStorage.setItem("bestScore", JSON.stringify(currentScore));
-            }
-        }
-    }, [tenzies]);
+    // Function to set the current game's score and update the best rolls and time in local storage
+    function setRecords() {
 
-    // Clear the interval when the component unmounts
-    React.useEffect(() => {
-      return () => clearInterval(intervalId);
-    }, [intervalId]);
+      const timeAdjusted = Math.floor(time / 10);
 
-        // Function to generate a new die object
-        function generateNewDie() {
-            return {
-                value: Math.ceil(Math.random() * 6),
-                isHeld: false,
-                id: nanoid()
-            };
-        }
+      setScore({
+        scoreRolls: rolls,
+        scoreTime: timeAdjusted
+      });
+
+      if (!bestRolls || score.scoreRolls < bestRolls) {
+        setBestRolls(score.scoreRolls);
+        localStorage.setItem("bestRolls", JSON.stringify(score.scoreRolls));
+      }
+
+      if (!bestTime || score.scoreTime < bestTime) {
+        setBestTime(score.scoreTime);
+        localStorage.setItem("bestTime", JSON.stringify(score.scoreTime));
+      }
+    }
+
+    // Function to generate a new die object
+    function generateNewDie() {
+        return {
+            value: Math.ceil(Math.random() * 6),
+            isHeld: false,
+            id: nanoid()
+        };
+    }
 
     // Function to generate an array of 10 new die objects
     function allNewDice() {
@@ -106,25 +115,14 @@ function App() {
     }
 
     // Function to start the game or start a new game
-    function startGame() {
+    function startNewGame() {
       setTenzies(false);
-      setGameStarted(true);
+      setStart(true);
       setDice(allNewDice());
       setRolls(0);
-      setCurrentScore({});
-      setStartTime((new Date().getTime())/1000);
       setTime(0);
-
-      if (intervalId) {
-        clearInterval(intervalId);
-      }
-
-      // Updates the current time every second
-      const newIntervalId = setInterval(() => {
-          setTime((new Date().getTime() - startTime)/1000);
-      }, 1000);
-      setIntervalId(newIntervalId);
-      }
+      setScore({});
+    }
     
     // Map the dice objects to an array of dice components
     const diceElements = dice.map(die => (
@@ -139,6 +137,7 @@ function App() {
     // Render the app
     return (
         <main>
+            {/* title and instructions */}
             {tenzies && <Confetti />}
             <h1 className="title">Tenzies</h1>
             <p className="instructions-1">
@@ -151,10 +150,14 @@ function App() {
               <p>» Click on the roll button to re-roll the unheld dice.</p>
             </div>
 
+            {/* Scoreboard, dice, and current number of rolls */}
             {
-              gameStarted &&
+              start &&
               <div>
-                  {bestScore !== null && <h2 className="best-score">Best Score: {bestScore.time} seconds with {bestScore.rolls} rolls</h2>}
+                  <Scoreboard 
+                      bestRolls={bestRolls} 
+                      bestTime={bestTime}
+                  />
                   <div className="dice-container">
                     {diceElements}
                   </div>
@@ -164,42 +167,55 @@ function App() {
               </div>   
             }
 
+            {/* Timer */}
             {
-              gameStarted && !tenzies &&
+              start && !tenzies &&
               <div className="current-time">
-                  <p>Current time in seconds: </p>
+                  <p>
+                    {/* divide the time by 10 because that is the value of a millisecond
+                    then modulo 1000. Now we will append this to a zero so that when the time starts
+                    there will be a zero already instead of just one digit. 
+                    Finally we will slice and pass in a parameter of -2 so that when the 
+                    number becomes two digits the zero will be removed */}
+                    Timer: {("0" + Math.floor((time / 1000) % 60)).slice(-2)}:
+                    {("0" + ((time / 10) % 1000)).slice(-2)}
+                  </p>
                   <p>{Math.round(time)}</p>
               </div>
             }
-            {
-              gameStarted && tenzies &&
-              <div className="current-time">
-                  <p>Current time in seconds: </p>
-                  <p>{Math.round(currentScore.time)}</p>
-              </div>
-            }
 
+            
+            {/* Ending time and win message */}
             {
               tenzies &&
-              <div className="win-container">
-                  <h2 className="win">You won!</h2>
-                  <h2 className="roll-win">
-                    It took you {currentScore.time} seconds and {currentScore.rolls} rolls!
-                  </h2>
+              <div>
+                  <div className="current-time">
+                      <p>Current time in seconds: </p>
+                      <p>{Math.round(currentScore.time)}</p>
+                  </div>
+                  <div className="win-container">
+                      <h2 className="win">You won!</h2>
+                      <h2 className="roll-win">
+                        It took you {currentScore.time} seconds and {currentScore.rolls} rolls!
+                      </h2>
+                  </div>
               </div>
             }
 
+            {/* Start game button */}
             {
-              !gameStarted && !tenzies &&
+              !start && !tenzies &&
                 <button 
                     className="tenzies-button" 
-                    onClick={startGame}
+                    onClick={startNewGame}
                 >
                     Start Game
                 </button>
             }
+
+            {/* Roll button */}
             {
-              gameStarted && !tenzies &&
+              start && !tenzies &&
                 <button 
                     className="tenzies-button" 
                     onClick={rollDice}
@@ -207,11 +223,13 @@ function App() {
                     Roll
                 </button>
             }
+
+            {/* New game button */}
             {
-              gameStarted && tenzies &&
+              tenzies &&
                 <button 
                     className="tenzies-button" 
-                    onClick={startGame}
+                    onClick={startNewGame}
                 >
                     New Game
                 </button>
