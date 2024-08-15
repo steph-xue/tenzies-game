@@ -8,11 +8,17 @@ function App() {
     // Create a state variable to store the 10 dice objects (initially all randomly generated)
     const [dice, setDice] = React.useState(allNewDice());
 
+    // Create a state variable to store whether the player has started the game
+    const [gameStarted, setGameStarted] = React.useState(false);
+
     // Create a state variable to store whether the player has achieved a tenzies win
     const [tenzies, setTenzies] = React.useState(false);
 
     // Create a state variable to store the number of rolls
     const [rolls, setRolls] = React.useState(0);
+
+    // Create a state variable to store the best score (fastest time and associated number of rolls)
+    const [bestScore, setbestScore] = React.useState(() => localStorage.getItem("bestScore") || {});
     
     // Check if the player has achieved a tenzies win
     // Checks if all dice are held and have the same value
@@ -24,6 +30,16 @@ function App() {
             setTenzies(true);
         }
     }, [dice])
+
+    React.useEffect(() => {
+      if (tenzies) {
+        let currentScore = {
+          rolls: rolls,
+          time: new Date()
+        }
+      }
+      
+    }, [tenzies])
 
     // Function to generate a new die object
     function generateNewDie() {
@@ -43,22 +59,6 @@ function App() {
         return newDice;
     }
     
-    // Function to roll the dice or reset the game if won
-    function rollDice() {
-        if(!tenzies) {
-            setDice(oldDice => oldDice.map(die => {
-                return die.isHeld ? 
-                    die :
-                    generateNewDie();
-            }));
-            setRolls(prevRolls => prevRolls + 1);
-        } else {
-            setTenzies(false);
-            setDice(allNewDice());
-            setRolls(0);
-        }
-    }
-    
     // Function to hold a die
     function holdDice(id) {
         setDice(oldDice => oldDice.map(die => {
@@ -66,6 +66,29 @@ function App() {
                 {...die, isHeld: !die.isHeld} :
                 die;
         }));
+    }
+
+    // Function to roll the dice (after starting the game and before achieving a tenzies win)
+    function rollDice() {
+      setDice(oldDice => oldDice.map(die => {
+          return die.isHeld ? 
+              die :
+              generateNewDie();
+      }));
+      setRolls(prevRolls => prevRolls + 1);
+    }
+
+    // Function to start the game
+    function startGame() {
+      setGameStarted(true);
+    }
+
+    // Function to start a new game
+    function newGame() {
+      setTenzies(false);
+      setGameStarted(false);
+      setDice(allNewDice());
+      setRolls(0);
     }
     
     // Map the dice objects to an array of dice components
@@ -94,12 +117,34 @@ function App() {
             
             {tenzies && <h2 className="win">You won!</h2>}
             {tenzies && <h2 className="roll-win">It took you {rolls} rolls!</h2>}
-            <button 
-                className="roll-dice" 
-                onClick={rollDice}
-            >
-                {tenzies ? "New Game" : "Roll"}
-            </button>
+
+            {
+              gameStarted && !tenzies &&
+                <button 
+                    className="tenzies-button" 
+                    onClick={rollDice}
+                >
+                    Roll
+                </button>
+            }
+            {
+              !gameStarted && !tenzies &&
+                <button 
+                    className="tenzies-button" 
+                    onClick={startGame}
+                >
+                    Start Game
+                </button>
+            }
+            {
+              gameStarted && tenzies &&
+                <button 
+                    className="tenzies-button" 
+                    onClick={newGame}
+                >
+                    New Game
+                </button>
+            }
         </main>
     );
 }
