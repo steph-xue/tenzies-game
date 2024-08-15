@@ -10,6 +10,9 @@ function App() {
 
     // Create a state variable to store whether the player has achieved a tenzies win
     const [tenzies, setTenzies] = React.useState(false);
+
+    // Create a state variable to store the number of rolls
+    const [rolls, setRolls] = React.useState(0);
     
     // Check if the player has achieved a tenzies win
     // Checks if all dice are held and have the same value
@@ -48,9 +51,11 @@ function App() {
                     die :
                     generateNewDie();
             }));
+            setRolls(prevRolls => prevRolls + 1);
         } else {
             setTenzies(false);
             setDice(allNewDice());
+            setRolls(0);
         }
     }
     
@@ -83,8 +88,12 @@ function App() {
             <div className="dice-container">
                 {diceElements}
             </div>
-
+            <div className="roll-number">
+              Number of rolls: {rolls}
+            </div>
+            
             {tenzies && <h2 className="win">You won!</h2>}
+            {tenzies && <h2 className="roll-win">It took you {rolls} rolls!</h2>}
             <button 
                 className="roll-dice" 
                 onClick={rollDice}
