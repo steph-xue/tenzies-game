@@ -57,7 +57,7 @@ main {
 
 .best-score {
   font-size: 1.2rem;
-  margin-top: 0px;
+  margin-top: 10px;
   margin-bottom: 10px;
   text-align: center;
 }
@@ -86,6 +86,10 @@ main {
 	height: 80px;
 
 	border-radius: 10%;
+}
+
+.die-face:hover {
+  transform: scale(1.1);
 }
 
 .pip {
@@ -125,20 +129,39 @@ main {
 
 .roll-number {
   font-size: 1.2rem;
-  margin-bottom: 10px;
+  margin-bottom: -15px;
+  padding-bottom: 0px;
+  margin-top: 10px;
   text-align: center;
 }
 
 .current-time {
   font-size: 1.2rem;
-  margin-bottom: 10px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  padding-top: 0px;
   text-align: center;
+  display: flex;
+  justify-content: center;  
+  gap: 5px;
+}
+
+.win-container {
+  background-color: #d8c4af;
+  border-radius: 10px;
+  padding-block: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-bottom: 10px;
+  box-shadow: #81674c 0px 5px 15px 0px;
 }
 
 .win {
   font-size: 2.4rem;
-  margin-bottom: 15px;
+  margin-top: 8px;
+  margin-bottom: 5px;
   color: #814d1a;
+  text-align: center;
 }
 
 .roll-win {
@@ -146,6 +169,7 @@ main {
   margin-top: 0px;
   margin-bottom: 20px;
   color: #814d1a;
+  text-align: center;
 }
 
 .tenzies-button {
@@ -159,7 +183,7 @@ main {
   font-family: 'Karla', sans-serif;
   cursor: pointer;
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   box-shadow: 0 0px #b48b63, inset 0 -5px #916d49, inset 5px 0 #a97f56, inset -5px 0 #a97f56;
 }
 

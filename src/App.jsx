@@ -18,19 +18,22 @@ function App() {
     const [rolls, setRolls] = React.useState(0);
 
     // Create a state variable to store the start time of the current game
-    const [startTime, setStartTime] = React.useState(null);
+    const [startTime, setStartTime] = React.useState(0);
 
     // Create a state variable to store the end time of the current game
-    const [endTime, setEndTime] = React.useState(null);
+    const [endTime, setEndTime] = React.useState(0);
 
     // Create a state variable to store the current time
-    const [time, setTime] = React.useState(null);
+    const [time, setTime] = React.useState(0);
 
     // Create a state variable to store the current score (time and number of rolls to finish game after achieving a tenzies win)
     const [currentScore, setCurrentScore] = React.useState({});
 
     // Create a state variable to store the best score (fastest time and associated number of rolls)
-    const [bestScore, setbestScore] = React.useState(() => localStorage.getItem("bestScore") || {});
+    const [bestScore, setbestScore] = React.useState(() => JSON.parse(localStorage.getItem("bestScore")) || null);
+
+    // Create a state variable to store the interval ID for the timer
+    const [intervalId, setIntervalId] = React.useState(null);
     
     // Check if the player has achieved a tenzies win
     // Checks if all dice are held and have the same value
@@ -40,39 +43,39 @@ function App() {
         const allSameValue = dice.every(die => die.value === firstValue);
         if (allHeld && allSameValue) {
             setTenzies(true);
-            setEndTime(new Date());
+            setEndTime((new Date().getTime())/1000);
+            clearInterval(intervalId);
         }
     }, [dice])
 
     // Check if the player has achieved a new best score (fastest time) to save to local storage
     React.useEffect(() => {
-      if (tenzies) {
-        setCurrentScore({
-          rolls: rolls,
-          time: ((endTime.getTime() - startTime.getTime())/1000)
-        });
-      }
+        if (tenzies) {
+            setCurrentScore({
+                rolls: rolls,
+                time: (endTime - startTime) / 1000
+            });
 
-      if (bestScore) {
-        if (currentScore.time < bestScore.time) {
-          setbestScore(currentScore);
-          localStorage.setItem("bestScore", currentScore);
+            if (!bestScore || currentScore.time < bestScore.time) {
+              setBestScore(currentScore);
+              localStorage.setItem("bestScore", JSON.stringify(currentScore));
+            }
         }
-      } else {
-        setbestScore(currentScore);
-        localStorage.setItem("bestScore", currentScore);
-      }
-      
-    }, [tenzies])
+    }, [tenzies]);
 
-    // Function to generate a new die object
-    function generateNewDie() {
-        return {
-            value: Math.ceil(Math.random() * 6),
-            isHeld: false,
-            id: nanoid()
-        };
-    }
+    // Clear the interval when the component unmounts
+    React.useEffect(() => {
+      return () => clearInterval(intervalId);
+    }, [intervalId]);
+
+        // Function to generate a new die object
+        function generateNewDie() {
+            return {
+                value: Math.ceil(Math.random() * 6),
+                isHeld: false,
+                id: nanoid()
+            };
+        }
 
     // Function to generate an array of 10 new die objects
     function allNewDice() {
@@ -108,14 +111,20 @@ function App() {
       setGameStarted(true);
       setDice(allNewDice());
       setRolls(0);
-      setStartTime(new Date());
+      setCurrentScore({});
+      setStartTime((new Date().getTime())/1000);
+      setTime(0);
+
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
 
       // Updates the current time every second
-      setInterval(() => {
-        setTime(new Date().getTime());
+      const newIntervalId = setInterval(() => {
+          setTime((new Date().getTime() - startTime)/1000);
       }, 1000);
-    }
-
+      setIntervalId(newIntervalId);
+      }
     
     // Map the dice objects to an array of dice components
     const diceElements = dice.map(die => (
@@ -137,35 +146,47 @@ function App() {
               The player who gets all dice on the same number and yells "Tenzi!" the fastest is the winner. 
               You can play against others or try to beat your highest score!
             </p>
-            <p className="instructions-2">
+            <div className="instructions-2">
               <p>» Click each die to freeze it at its current value between rolls.</p>
               <p>» Click on the roll button to re-roll the unheld dice.</p>
-            </p>
+            </div>
 
             {
               gameStarted &&
               <div>
-                  <div className="best-score">
-                    {bestScore !== null && <h2 className="best-score">Best Score: {bestScore.time} seconds with {bestScore.rolls} rolls</h2>}
-                  </div>
+                  {bestScore !== null && <h2 className="best-score">Best Score: {bestScore.time} seconds with {bestScore.rolls} rolls</h2>}
                   <div className="dice-container">
                     {diceElements}
                   </div>
                   <div className="roll-number">
                     Number of rolls: {rolls}
                   </div>
-                  <div className="current-time">
-                    Current time: {time/1000} seconds
-                  </div>
               </div>   
             }
 
-            {tenzies && <h2 className="win">You won!</h2>}
+            {
+              gameStarted && !tenzies &&
+              <div className="current-time">
+                  <p>Current time in seconds: </p>
+                  <p>{Math.round(time)}</p>
+              </div>
+            }
+            {
+              gameStarted && tenzies &&
+              <div className="current-time">
+                  <p>Current time in seconds: </p>
+                  <p>{Math.round(currentScore.time)}</p>
+              </div>
+            }
+
             {
               tenzies &&
-                <h2 className="roll-win">
-                  It took you {currentScore.time.toFixed(2)} seconds and {currentScore.rolls} rolls!
-                </h2>
+              <div className="win-container">
+                  <h2 className="win">You won!</h2>
+                  <h2 className="roll-win">
+                    It took you {currentScore.time} seconds and {currentScore.rolls} rolls!
+                  </h2>
+              </div>
             }
 
             {
