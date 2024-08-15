@@ -13,7 +13,7 @@ body {
 
 main {
   background-color: #F5F5F5;
-  min-height: 550px;
+  min-height: 50px;
   width: 800px;
   padding-block: 30px;
   padding-left: 20px;
@@ -32,12 +32,27 @@ main {
   margin-bottom: 10px;
 }
 
-.instructions {
+.instructions-1 {
   font-family: 'Inter', sans-serif;
   font-weight: 400;
   margin-top: 20px;
+  margin-bottom: 6px;
+  text-align: left;
+  max-width: 650px;
+}
+
+.instructions-2 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  margin-top: 10px;
   margin-bottom: 20px;
-  text-align: center;
+  text-align: left;
+  max-width: 500px;
+}
+
+.instructions-2 > p {
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 .dice-container {
