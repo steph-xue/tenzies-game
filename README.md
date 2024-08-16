@@ -13,12 +13,22 @@ Can access on: https://react-notes-local-sx.netlify.app/
   - The sidebar will contain a '+' icon that when clicked on will create a new note
 <br><br>
 
-![Create New](./images/create-new.png?raw=true "Create New")
-The user can click on the create on the 'create one now' button to get started with their first note
+![Start Game](./images/start-game.png?raw=true "Start Game")
+Hi
 <br><br>
 
+![Game](./images/game.png?raw=true "Game")
+Hi
+<br><br>
 
-<br></br>
+![Hold Dice](./images/hold-dice.png?raw=true "Hold Dice")
+Hi
+<br><br>
+
+![Win](./images/win.png?raw=true "Win")
+Hi
+<br><br>
+
 
 ## Languages & Frameworks
 - The react info project was created using React, a front-end JavaScript web libary
