@@ -67,7 +67,7 @@ main {
   font-size: 1rem;
   margin-top: 0px;
   padding-top: 0px;
-  margin-bottom: 0px;
+  margin-bottom: 5px;
   padding-bottom: 0px;
   text-align: center;
   display: flex;
@@ -88,13 +88,13 @@ main {
 
 .best-rolls > p {
   margin-top: 4px;
-  margin-bottom: 0px; 
+  margin-bottom: 5px; 
   padding: 0px;
 }
 
 .best-time > p {
   margin-top: 4px;
-  margin-bottom: 0px;
+  margin-bottom: 5px;
   padding: 0px;
   
 }
@@ -102,7 +102,7 @@ main {
 .dice-container {
   display: grid;
   grid-template: auto auto / repeat(5, 1fr);
-  grid-column-gap: 5px;
+  grid-column-gap: 0px;
   grid-row-gap: 0px;
   margin-bottom: 15px;
   margin-top: -15px;
@@ -120,8 +120,8 @@ main {
 	flex: 0 0 auto;
 	margin: 16px;
 	padding: 10px;
-	width: 50px;
-	height: 50px;
+	width: 60px;
+	height: 60px;
 
 	border-radius: 10%;
 }
@@ -171,7 +171,7 @@ main {
   align-items: center;
   gap: 20px;
   font-size: 1rem;
-  margin-top: -10px;
+  margin-top: -5px;
   padding-top: 0px;
   margin-bottom: 0px;
 }
