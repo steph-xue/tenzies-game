@@ -9,26 +9,26 @@ function Scoreboard(props) {
                 (props.bestRolls !== 0 && props.bestRoll !== null) 
                     ?
                     <div className="best-rolls">
-                        <p>Best Rolls: </p>
-                        <p>{props.bestRolls} rolls</p>
+                        <p className="gradient-text">Best Rolls: </p>
+                        <p className="gradient-text">{props.bestRolls} rolls</p>
                     </div>
                     :
                     <div className="best-rolls">
-                        <p>Best Rolls: </p>
-                        <p>N/A</p>
+                        <p className="gradient-text">Best Rolls: </p>
+                        <p className="gradient-text">N/A</p>
                     </div>
             }
             {
                 (props.bestTime !== 0 && props.bestTime !== null) 
                     ?
-                    <div className="best-time">
-                        <p>Best Time: </p>
-                        <p>{props.bestTime} seconds</p>
+                    <div className="best-time gradient-text">
+                        <p className="gradient-text">Best Time: </p>
+                        <p className="gradient-text">{props.bestTime} seconds</p>
                     </div>
                     :
                     <div className="best-time">
-                        <p>Best Time: </p>
-                        <p>N/A</p>
+                        <p className="gradient-text">Best Time: </p>
+                        <p className="gradient-text">N/A</p>
                     </div> 
             }
         </div>
