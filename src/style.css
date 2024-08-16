@@ -25,6 +25,7 @@ main {
   align-items: center;
   border-radius: 10px;
   box-shadow: #ab8865 0px 5px 15px 0px;
+}
 
 .title {
   font-size: 3rem;
