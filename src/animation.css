@@ -1,0 +1,92 @@
+.animate-character
+{
+   text-transform: uppercase;
+  background-image: linear-gradient(
+    -225deg,
+    #936232 0%,
+    #b68c62 29%,
+    #b1804c 67%,
+    #d9cbbd 100%
+  );
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 2s linear infinite;
+}
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.gradient-text {
+    /* Fallback: Set a background color. */
+    background-color: #ca4246;
+  
+    /* Create the gradient. */
+    background-image: linear-gradient(
+      45deg,
+      #5b350f  0%, 16.666%,
+      #7a4a1b 16.666%,
+      #825528 33.333%,
+      #976b3e 33.333%,
+      #be7730 50%,
+      #be844a 50%,
+      #c29363 66.666%,
+      #b5814c 66.666%,
+      #ba8a59 83.333%,
+      #cd9f74 83.333%
+    );
+  
+    /* Set the background size and repeat properties. */
+    background-size: 100%;
+    background-repeat: repeat;
+  
+    /* Use the text as a mask for the background. */
+    /* This will show the gradient as a text color rather than element bg. */
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  
+    /* Animate the text when loading the element. */
+    /* This animates it on page load and when hovering out. */
+    animation: gradient-text-simple-animation-rev 0.75s ease forwards;
+  }
+  
+  .gradient-text:hover {
+    animation: gradient-text-simple-animation 0.5s ease-in forwards;
+  }
+  
+  /* Move the background and make it smaller. */
+  /* Animation shown when entering the page and after the hover animation. */
+  @keyframes gradient-text-simple-animation-rev {
+    0% {
+      background-size: 650%;
+    }
+    40% {
+      background-size: 650%;
+    }
+    100% {
+      background-size: 100%;
+    }
+  }
+  
+  /* Move the background and make it larger. */
+  /* Animation shown when hovering over the text. */
+  @keyframes gradient-text-simple-animation {
+    0% {
+      background-size: 100%;
+    }
+    80% {
+      background-size: 650%;
+    }
+    100% {
+      background-size: 650%;
+    }
+  }

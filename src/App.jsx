@@ -143,13 +143,20 @@ function App() {
             holdDice={() => holdDice(die.id)}
         />
     ));
+
+    // Function to play the rolling dice sound
+    function playRoll() {
+      const audioRoll = new Audio("audio/rolling-dice.mp3");
+      audioRoll.play();
+    }
     
     // Render the app
     return (
         <main>
             {/* title and instructions */}
+            {tenzies && <audio src="audio/win.mp3" autoPlay />}
             {tenzies && <Confetti />}
-            <h1 className="title">Tenzies</h1>
+            <h1 className="title animate-character">Tenzies</h1>
             <p className="instructions-1">
               The objective of the game is to roll the dice as fast as possible until all dice are the same.
               The player who gets all dice on the same number and yells "Tenzi!" the fastest is the winner. 
@@ -222,7 +229,7 @@ function App() {
               start && !tenzies &&
                 <button 
                     className="tenzies-button" 
-                    onClick={rollDice}
+                    onClick={() => { playRoll(); rollDice(); }}
                 >
                     Roll
                 </button>
