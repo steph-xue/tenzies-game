@@ -25,7 +25,7 @@ Hi
 Hi
 <br><br>
 
-![Win](./images/win.png?raw=true "Win")
+![Tenzies Win](./images/tenzies-win.png?raw=true "Tenzies Win")
 Hi
 <br><br>
 
