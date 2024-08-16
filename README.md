@@ -52,6 +52,19 @@ Each die can be clicked on to hold it at its current value between rolls. The pl
 When a tenzies win is achieved, the current score is displayed with winning animation and audio effects.
 <br><br>
 
+**New Recently Added Features**
+  - Added pips (dots) to all of the face die instead of using numbers
+  - Added tracking of the number of rolls
+  - Added a timer function to track the time it takes to win
+  - Added a scoreboard component to save and track previous best scores (lowest number of rolls and fastest times to achieve a tenzies win)
+    - Added abillity to save best scores to local storage
+  - Added animation when hovering over and clicking on the buttons to make them more realistic with box shadows and scaling
+  - Added animation when hovering over the dice to show which one will be selected when clicked on
+  - Added gradient animation to the tenzies title
+  - Added gradient animation to the scoreboard scores and changing gradient animation when hovering over the scores
+  - Added rolling dice audio effect when the roll dice button is clicked on
+  - Added winning audio effect when achieving a tenzies win
+
 
 ## Languages & Frameworks
 - The react info project was created using React, a front-end JavaScript web libary
