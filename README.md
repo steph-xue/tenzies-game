@@ -26,7 +26,7 @@ Can access on: https://react-notes-local-sx.netlify.app/
 &nbsp;
 
 **Scoreboard**
-  - The scoreboard will show the player's previous best scores with the lowest number of rolls and quickest time to achieve a tenzies win
+  - The scoreboard will show the player's previous best scores with the lowest number of rolls to achieve a tenzies win and quickest time to achieve a tenzies win
   - All scores are stored in the player's computer's local storage
 
 <br><br>
