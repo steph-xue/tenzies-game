@@ -13,20 +13,17 @@ Can access on: https://react-notes-local-sx.netlify.app/
   - When a new game is started, a random set of 10 dice will be generated
   - Each die can be clicked on to hold the die it at its current value between rolls (highlighted in a darker color)
   - The player can then click on the roll button to re-roll the unheld dice
-    
-<br><br>
+&nbsp;
 
 **Timer**
   - When a new game is started, the timer will start and record the time until a tenzies win is achieved
   - The timer is displayed dynamically on the game and is updated every 10 milliseconds
-
-<br><br>
+&nbsp;
 
 **Number of Rolls**
   - When a new game is started, the game will keep track of the number of rolls made until a tenzies win is achieved
   - The number of current rolls is displayed dynamically on the game and is updated with each roll
-
-<br><br>
+&nbsp;
 
 **Scoreboard**
   - The scoreboard will show the player's previous best scores with the lowest number of rolls and quickest time to achieve a tenzies win
@@ -39,7 +36,7 @@ The player can start a new game by click on the "start game" button.
 <br><br>
 
 ![Game](./images/game.png?raw=true "Game")
-The goal of the game is to roll the dice as fast as possible until all dice are the same to achieve a tenzies win. The number of rolls, timer, and scoreboard are displayed.
+The goal of the game is to roll the dice as fast as possible until all dice are the same to achieve a tenzies win. The number of rolls, the timer, and the scoreboard with your personal best rolls and best time are displayed.
 <br><br>
 
 ![Hold Dice](./images/hold-dice.png?raw=true "Hold Dice")
@@ -47,7 +44,7 @@ Each die can be clicked on to hold the die it at its current value between rolls
 <br><br>
 
 **Tenzies Win**
-  - When the play achieves a tenzies win (all dice are of the same number), the game will display that a win has been achieved and will show the score of the current game, including the number of rolls and time it took to achieve the win
+  - When the player achieves a tenzies win (all dice are of the same number), the game will display that a win has been achieved and will show the score of the current game, including the number of rolls and time it took to achieve the win
   - Confetti art animation will be displayed and a winning sound effect will be played
 <br><br>
 
