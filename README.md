@@ -40,7 +40,7 @@ The goal of the game is to roll the dice as fast as possible until all dice are 
 <br><br>
 
 ![Hold Dice](./images/hold-dice.png?raw=true "Hold Dice")
-Each die can be clicked on to hold the die it at its current value between rolls. The player can then click on the roll button to re-roll the unheld dice.
+Each die can be clicked on to hold it at its current value between rolls. The player can click on the roll button to re-roll the unheld dice.
 <br><br>
 
 **Tenzies Win**
