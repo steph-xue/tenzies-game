@@ -82,9 +82,6 @@ When a tenzies win is achieved, the current score is displayed with winning anim
 - Install the latest version of node.js (JavaScript runtime server)
 - Install the latest version of npm (JavaScript package manager)
 - Install the latest version of vite which can be done by typing in the command line 'npm install -D vite'
-- Make sure React is version 17 as some of the dependencies are not supported on React version 18+. To do this you can run the following commands:
-  - 'npm uninstall react react-dom'
-  - 'npm install react@17.0.2 react-dom@17.0.2'
 - Install the dependencies by running the following commands:
   - React-confetti
     - 'npm install react-confetti'
