@@ -75,6 +75,8 @@ When a tenzies win is achieved, the current score is displayed with winning anim
 ## Dependencies 
   - React-confetti
     - Displays rainbow confetti that falls from the top of the page
+  - Nano ID
+    - A tiny, secure, URL-friendly, unique string ID generator for JavaScript
 
 ## How to Run Locally
 - Install the latest version of node.js (JavaScript runtime server)
