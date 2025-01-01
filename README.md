@@ -1,6 +1,10 @@
 # Tenzies Game
 
 The tenzies game project is a dynamic web application built using the front-end JavaScript library, React. The web application's data saves directly on the computer's local database. The objective of the game is to roll the dice as fast as possible until all dice are the same. The player who gets all dice on the same number and yells "Tenzi!" the fastest is the winner. You can play against other people or play against yourself and try to beat your best time. The user can click each die to freeze it at its current value between rolls. The user can then click on the roll button to re-roll the unheld dice. 
+<br>
+- Implemented dynamic state management to handle dice rolls, dice hold states, and high score updates, leveraging React.js hooks including useState and useEffect to synchronize game logic and UI rendering
+- Implemented a game timer using React.js hooks like useEffect and setInterval to increment the timer by 10ms each interval cycle, ensuring real-time responsiveness with cleanup logic to reset the interval and ensure proper unmounting
+
 &nbsp;
 
 Can access on: https://main--tenzies-game-sx.netlify.app/
