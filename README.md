@@ -90,7 +90,8 @@ When a tenzies win is achieved, the current score is displayed with winning anim
     - Check the version using the command
         - ```npm --version```
 - Clone the repository from github by typing in the command line
-    - ```git clone <repo-url>```
+    - HTTPS: ```git clone https://github.com/steph-xue/tenzies-game.git```
+    - SSH: ```git clone git@github.com:steph-xue/tenzes-game.git```
 - Install any dependencies by using the command
     - ```npm install```
 - The web application can be run on your local server by typing the command
