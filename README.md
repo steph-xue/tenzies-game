@@ -18,7 +18,8 @@ A tenzies game web application where the goal is to roll ten dice as fast as pos
 
 ## Overview
 
-This project is a browser based tenzies game web application. Players roll a set of dice, hold the ones they want to keep, and try to get every die to match as quickly as possible, with rolls, time, and personal bests tracked throughout. It is built with React, JavaScript, HTML, and CSS, and bundled with Vite. React Confetti powers the win animation, Nano ID generates a unique identifier for each die, and scores are saved to the browser's local storage so a personal best persists between visits.
+This project is a browser-based tenzies game web application. Players roll a set of dice, hold the ones they want to keep, and try to get every die to match as quickly as possible, with rolls, time, and personal bests tracked throughout. It is built with React, JavaScript, HTML, and CSS, and bundled with Vite. Personal best scores are saved in the browser’s local storage so they remain available between visits. React Confetti provides a celebration animation when a game is completed, while nanoid generates a unique identifier for each die. The application also includes sound effects, interactive dice states, and a live scoreboard.
+
 
 <br>
 
