@@ -53,11 +53,11 @@ Once every die is held and all show the same number, the game declares a win, di
 <br>
 
 ## Tech Stack
-
+ 
 | Layer | Technologies |
 |---|---|
 | Frontend | React, JavaScript, HTML, CSS |
-| Libraries | React Confetti, Nano ID |
+| Libraries | React Confetti (displays a confetti win animation),<br>Nano ID (generates a unique id for each die) |
 | Storage | Local storage |
 | Build Tool | Vite |
 
