@@ -3,11 +3,11 @@
 </h1>
 
 <h4 align="center">
-  A Tenzies dice game where players race to match all ten dice as fast as possible.
+  A tenzies dice game web application where players race to match all ten dice as fast as possible.
 </h4>
 
 <p align="center">
-  <img src="./images/game.png?raw=true" alt="Tenzies Game" width="500">
+  <img src="./images/game.png?raw=true" alt="Tenzies Game" width="400">
 </p>
 
 <p align="center">
