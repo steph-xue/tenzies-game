@@ -1,8 +1,18 @@
-# Tenzies Game
+<h1 align="center">
+  Tenzies Game
+</h1>
 
-A tenzies game web application where the goal is to roll ten dice as fast as possible until they all show the same number. Players can compete against others or try to beat their own best time and roll count, tracked on a personal scoreboard, complete with sound effects and animation for a polished, game like feel.
+<h4 align="center">
+  A Tenzies dice game where players race to match all ten dice as fast as possible.
+</h4>
 
-**[View Live Demo](https://main--tenzies-game-sx.netlify.app/)**
+<p align="center">
+  <img src="./images/game.png?raw=true" alt="Tenzies Game" width="500">
+</p>
+
+<p align="center">
+  <a href="https://main--tenzies-game-sx.netlify.app/">View Live Demo</a>
+</p>
 
 <br>
 
@@ -11,15 +21,14 @@ A tenzies game web application where the goal is to roll ten dice as fast as pos
 - [Features](#features)
 - [Tech Stack](#tech-stack)
 - [How It Works](#how-it-works)
-- [Future Improvements](#future-improvements)
 - [Getting Started](#getting-started)
+- [Future Improvements](#future-improvements)
 
 <br>
 
 ## Overview
 
-This project is based on a fast-paced game of tenzies where players hold selected dice between rolls and work toward matching all ten as quickly as possible. It is built with React, JavaScript, HTML, and CSS, and bundled with Vite. The game tracks elapsed time, total rolls, and personal bests, with scores saved in the browser’s local storage so they remain available between visits. React Confetti provides a celebration animation when a round is completed, while nanoid generates a unique identifier for each die. Sound effects, interactive dice states, and a live scoreboard provide additional feedback throughout gameplay.
-
+This project is a browser-based Tenzies game where players roll ten dice, hold the values they want to keep, and continue rolling until every die displays the same number. Players can compete against others or try to beat their own best time and roll count, which are tracked on a personal scoreboard and saved between visits. It is built with React, JavaScript, HTML, and CSS and uses Vite as the build tool. React Confetti provides the win animation, Nano ID generates a unique identifier for each die, and the browser’s local storage preserves personal-best scores. Sound effects, animated text, and responsive interactions create a polished, game-like experience.
 
 <br>
 
