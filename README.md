@@ -11,8 +11,8 @@ A tenzies game web application where the goal is to roll ten dice as fast as pos
 - [Features](#features)
 - [Tech Stack](#tech-stack)
 - [How It Works](#how-it-works)
-- [Getting Started](#getting-started)
 - [Future Improvements](#future-improvements)
+- [Getting Started](#getting-started)
 
 <br>
 
@@ -70,6 +70,14 @@ The dice are held in a single state array, with each die tracking its own value,
 
 <br>
 
+## Future Improvements
+Several enhancements are planned to extend the functionality of the application:
+- A difficulty setting to change the number of dice or target condition
+- Persistent score history instead of just the single best time and roll count
+- A multiplayer mode for competing against another player in the same session
+  
+<br>
+
 ## Getting Started
 
 Follow the steps below to set up and run the application on your own machine.
@@ -105,11 +113,3 @@ npm run dev
 ```
 
 Once the server is running, open the local URL shown in the terminal to start using the application.
-
-<br>
-
-## Future Improvements
-Several enhancements are planned to extend the functionality of the application:
-- A difficulty setting to change the number of dice or target condition
-- Persistent score history instead of just the single best time and roll count
-- A multiplayer mode for competing against another player in the same session
