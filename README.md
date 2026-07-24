@@ -7,7 +7,7 @@
 </h4>
 
 <p align="center">
-  <img src="./images/game.png?raw=true" alt="Tenzies Game" width="400">
+  <img src="docs/screenshots/game.png?raw=true" alt="Tenzies Game" width="400">
 </p>
 
 <p align="center">
@@ -37,28 +37,28 @@ This project is a browser-based tenzies game where players race to match all ten
 ### Starting the Game
 Instructions explaining the goal of the game are shown above the "Start Game" button. Clicking it begins a new round with ten randomized dice, a reset roll counter, and a timer that starts counting up immediately.
 
-<p align="center"><img src="./images/start-game.png?raw=true" alt="Start Game" width="700"></p>
+<p align="center"><img src="docs/screenshots/start-game.png?raw=true" alt="Start Game" width="700"></p>
 
 <br>
 
 ### Rolling and Holding Dice
 Clicking a die holds it at its current value, shown with a different color, and clicking "Roll" re-rolls every die that has not been held while playing a rolling dice sound effect. This lets the player lock in matching numbers as they go instead of re-rolling everything each time.
 
-<p align="center"><img src="./images/hold-dice.png?raw=true" alt="Hold Dice" width="700"></p>
+<p align="center"><img src="docs/screenshots/hold-dice.png?raw=true" alt="Hold Dice" width="700"></p>
 
 <br>
 
 ### Timer, Rolls, and Scoreboard
 While a game is in progress, the number of rolls made and the current time are both displayed and update live, with the timer formatted as minutes and seconds. A scoreboard shows the player's personal best roll count and best time from previous games, or "N/A" if no games have been completed yet.
 
-<p align="center"><img src="./images/game.png?raw=true" alt="Game in Progress" width="700"></p>
+<p align="center"><img src="docs/screenshots/game.png?raw=true" alt="Game in Progress" width="700"></p>
 
 <br>
 
 ### Winning the Game
 Once every die is held and all show the same number, the game declares a win, displaying the final roll count and time alongside a falling confetti animation and a win sound effect. If the result beats a previous personal best, the scoreboard updates automatically to reflect the new record.
 
-<p align="center"><img src="./images/tenzies-win.png?raw=true" alt="Winning the Game" width="700"></p>
+<p align="center"><img src="docs/screenshots/tenzies-win.png?raw=true" alt="Winning the Game" width="700"></p>
 
 <br>
 

@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from "prop-types";
 
 function Scoreboard(props) {
 
@@ -6,7 +6,7 @@ function Scoreboard(props) {
     return (
         <div className="scoreboard">
             {
-                (props.bestRolls !== 0 && props.bestRoll !== null) 
+                (props.bestRolls !== 0 && props.bestRolls !== null)
                     ?
                     <div className="best-rolls">
                         <p className="gradient-text">Best Rolls: </p>
@@ -34,5 +34,10 @@ function Scoreboard(props) {
         </div>
     );
 }
+
+Scoreboard.propTypes = {
+    bestRolls: PropTypes.number.isRequired,
+    bestTime: PropTypes.number.isRequired,
+};
 
 export default Scoreboard;

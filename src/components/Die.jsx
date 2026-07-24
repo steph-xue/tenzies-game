@@ -1,4 +1,4 @@
-import React from "react"
+import PropTypes from "prop-types"
 
 function Die(props) {
     // Extract the value of the die from the props
@@ -28,5 +28,11 @@ function Die(props) {
         </div>
     );
 }
+
+Die.propTypes = {
+    value: PropTypes.number.isRequired,
+    isHeld: PropTypes.bool.isRequired,
+    holdDice: PropTypes.func.isRequired,
+};
 
 export default Die;
