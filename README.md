@@ -28,7 +28,7 @@
 
 ## Overview
 
-This project is a browser-based tenzies game where players race to match all ten dice by rolling them, holding the dice values they want to keep, and continuing until every die displays the same number. Built with React, JavaScript, HTML, and CSS using Vite, the game allows players to compete against others or try to beat their own best time and roll count, which are tracked on a personal scoreboard and saved between visits. React Confetti provides the win animation, Nano ID generates a unique identifier for each die, and the browser’s local storage preserves personal-best scores. Sound effects, animated text, and responsive interactions create a polished, game-like experience.
+This project is a browser-based tenzies game where players race to match all ten dice by rolling them, holding the dice values they want to keep, and continuing until every die displays the same number. Built with React, JavaScript, HTML, and CSS, using Vite as the build tool, and deployed on Netlify for cloud hosting, the game allows players to compete against others or try to beat their own best time and roll count, which are tracked on a personal scoreboard and saved between visits. React Confetti provides the win animation, Nano ID generates a unique identifier for each die, and the browser’s local storage preserves personal-best scores. Sound effects, animated text, and responsive interactions create a polished, game-like experience.
 
 <br>
 
@@ -70,6 +70,7 @@ Once every die is held and all show the same number, the game declares a win, di
 | Libraries | React Confetti (displays a confetti win animation),<br>Nano ID (generates a unique id for each die) |
 | Storage | Local storage |
 | Build Tool | Vite |
+| Deployment | Netlify |
 
 <br>
 
