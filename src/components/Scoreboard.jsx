@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 
+// Scoreboard component that displays the player's best rolls and time
 function Scoreboard(props) {
 
     // Render the scoreboard component

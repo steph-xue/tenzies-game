@@ -4,6 +4,7 @@ import Scoreboard from "./components/Scoreboard.jsx"
 import {nanoid} from "nanoid"
 import Confetti from "react-confetti"
 
+// Main app component that renders the tenzies game
 function App() {
 
     // Create a state variable to store the 10 dice objects (initially all randomly generated)
@@ -35,8 +36,8 @@ function App() {
     const [bestTime, setBestTime] = React.useState(
       localStorage.getItem("bestTime") !== (undefined || null) ? JSON.parse(localStorage.getItem("bestTime")) : 0);
 
-    // Check if the player has achieved a tenzies win (all dice are held and have the same value)
-    // If win is achieved, set the tenzies state to true, stops the game, and saves the score
+    // Check if the player has achieved a tenzies win (all dice are held and have the same value).
+    // If win is achieved, set the tenzies state to true, stops the game, and saves the score.
     React.useEffect(() => {
         const allHeld = dice.every(die => die.isHeld);
         const firstValue = dice[0].value;
@@ -153,7 +154,7 @@ function App() {
     // Render the app
     return (
         <main>
-            {/* title and instructions */}
+            {/* Title and instructions */}
             {tenzies && <audio src="audio/win.mp3" autoPlay />}
             {tenzies && <Confetti />}
             <h1 className="title animate-character">Tenzies</h1>
@@ -190,11 +191,10 @@ function App() {
                   </div>
                   <div className="current-time">
                       <p>
-                        {/* divide the time by 10 because that is the value of a millisecond
-                        then modulo 1000. Now we will append this to a zero so that when the time starts
-                        there will be a zero already instead of just one digit. 
-                        Finally we will slice and pass in a parameter of -2 so that when the 
-                        number becomes two digits the zero will be removed */}
+                        {/* Divide the time by 10 because that is the value of a millisecond, then modulo 1000.
+                        Now we will append this to a zero so that when the time starts there will be a zero
+                        already instead of just one digit. Finally, we will slice and pass in a parameter of -2
+                        so that when the number becomes two digits the zero will be removed. */}
                         Timer: {("0" + Math.floor((time / 1000) % 60)).slice(-2)}:
                         {("0" + ((time / 10) % 1000)).slice(-2)} 
                       </p>

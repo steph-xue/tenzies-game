@@ -1,5 +1,6 @@
 import PropTypes from "prop-types"
 
+// Die component that renders a single die face
 function Die(props) {
     // Extract the value of the die from the props
     const dieValue = props.value;
