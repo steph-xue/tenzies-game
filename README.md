@@ -97,6 +97,7 @@ Follow the steps below to set up and run the application on your own machine.
 **Prerequisites**
 
 Make sure Node.js and npm are installed before you begin. You can check both by running the commands below, which should each print a version number.
+> **Note:** This project requires Node.js 18+, per Vite 5's supported versions.
 ```bash
 node --version
 npm --version
