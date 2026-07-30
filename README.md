@@ -122,7 +122,7 @@ npm install
 
 **3. Start the Development Server**
 
-This runs the application locally with Vite.
+This runs the application on a single local server.
 ```bash
 npm run dev
 ```
